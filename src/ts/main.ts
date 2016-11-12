@@ -1,8 +1,8 @@
 import * as ko from "knockout";
 import * as $ from "jquery";
 import * as bs from "bootstrap";
-import HelloViewModel = require("./hello/HelloViewModel")
 
+import HelloViewModel from "./hello/HelloViewModel";
 
 
 
