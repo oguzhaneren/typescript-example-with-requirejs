@@ -4,9 +4,12 @@
     <head>
         <meta charset="UTF-8" />
         <title>Hello Knockout!</title>
+        <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/fontawesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/style/site.css">
     </head>
     <body>
+        <div class="container">
         <p>
             Hello from
             <strong data-bind="text: language">todo</strong>
@@ -14,8 +17,10 @@
             <strong data-bind="text: framework">todo</strong>!
         </p>
 
-        <p>Language: <input data-bind="value: language" /></p>
-        <p>Framework: <input data-bind="value: framework" /></p>
+        <p>Language: <input class="form-control" data-bind="value: language" /></p>
+        <p>Framework: <input class="form-control" data-bind="value: framework" /></p>
+        </div>
+        
 
         <script src="assets/vendors/requirejs/require.js"></script>
         <script src="assets/js/require-config.js"></script>
