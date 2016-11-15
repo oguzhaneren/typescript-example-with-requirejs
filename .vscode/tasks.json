@@ -1,10 +1,89 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "tsc",
+    "command": "cmd",
+    "args": ["/C"],
     "isShellCommand": true,
-    "args": ["-p", "."],
-    "showOutput": "silent",
-    "problemMatcher": "$tsc"
+    "tasks": [
+        {
+            "taskName": "Compile TypeScript with Gulp",
+            "suppressTaskName": true,
+            "args": ["gulp"," compile-ts"],
+            "showOutput": "always",
+            "isWatching": false,
+            "problemMatcher": "$tsc"
+        },
+        {
+			"taskName": "Watch with Gulp",
+            "suppressTaskName": true,
+            "args": ["gulp"," watch"],
+			"showOutput": "always"
+		},
+       {
+            "taskName": "Lint TypeScript with Gulp",
+            "suppressTaskName": true,
+            "args": ["gulp"," tslint"],
+            "problemMatcher": {
+                "owner": "tslint",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^\\(\\S.*\\) (\\S.*)\\[(\\d+), (\\d+)\\]:\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "message": 4
+                }
+            }
+        },
+        {
+            "taskName": "Compile TypeScript",
+            "suppressTaskName": true,
+            "args": ["tsc", "-w", "-p", "."],
+            "showOutput": "always",
+            "isBuildCommand": true,
+            "isWatching": true,
+            "problemMatcher": "$tsc-watch"           
+        },
+		{
+            "taskName": "Lint TypeScript",
+            "suppressTaskName": true,
+            "args": ["tslint", "-c", "tslint.json", "src/ts/**/*.ts"],
+            "showOutput": "always",
+            "isBuildCommand": true,
+            "isWatching": false,
+            "problemMatcher": {
+                "owner": "tslint",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^\\(\\S.*\\) (\\S.*)\\[(\\d+), (\\d+)\\]:\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "message": 4
+                }
+            }
+        },
+        {
+            "taskName": "Test with Node.js",
+            "suppressTaskName": true,
+            "args": ["runts ${fileDirname} ${fileBasename}"],
+            "showOutput": "always",
+            "isBuildCommand": false,
+            "isWatching": false
+        },                
+        {
+            "taskName": "View In Chrome",
+            "suppressTaskName": true,
+            "args": ["start chrome", "${file}"],
+            "isBuildCommand": false,
+            "isWatching": false
+        }
+    ]
 }
